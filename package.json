@@ -12,6 +12,6 @@
   "dependencies": {
     "cli-interact": "^0.1.9",
     "openzeppelin-solidity": "2.3.0",
-    "sync-request": "^6.0.0"
+    "sync-request": "^6.1.0"
   }
 }
