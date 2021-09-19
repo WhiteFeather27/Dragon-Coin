@@ -13,5 +13,6 @@
     "cli-interact": "^0.1.9",
     "openzeppelin-solidity": "2.5.1",
     "sync-request": "^6.0.0"
+
   }
 }
