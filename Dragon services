@@ -1,5 +1,40 @@
 
-  "name": "contract",
+ pragma solidity ^0.5.8;
+
+// Imports
+import "../node_modules/openzeppelin-solidity/contracts/crowdsale/emission/MintedCrowdsale.sol";
+import "../node_modules/openzeppelin-solidity/contracts/ownership/Ownable.sol";
+import "../node_modules/openzeppelin-solidity/contracts/token/ERC20/ERC20Mintable.sol";
+import "../node_modules/openzeppelin-solidity/contracts/crowdsale/validation/TimedCrowdsale.sol";
+import "../node_modules/openzeppelin-solidity/contracts/crowdsale/distribution/RefundableCrowdsale.sol";
+import "../node_modules/openzeppelin-solidity/contracts/crowdsale/price/IncreasingPriceCrowdsale.sol";
+import "../node_modules/openzeppelin-solidity/contracts/crowdsale/validation/CappedCrowdsale.sol";
+
+contract DGNCrowdsale is MintedCrowdsale, Ownable, TimedCrowdsale, RefundableCrowdsale, IncreasingPriceCrowdsale, CappedCrowdsale {
+  constructor(
+    ERC20Mintable _token,
+    uint256 _rate,
+    address payable _wallet,
+    uint256 _openingTime,
+    uint256 _closingTime,
+    uint256 _goal,
+    uint256 _initialRate,
+    uint256 _finalRate,
+    uint256 _cap
+  )
+    public
+    Crowdsale(_rate, _wallet, _token)
+    TimedCrowdsale(_openingTime, _closingTime)
+    RefundableCrowdsale(_goal)
+    IncreasingPriceCrowdsale(_initialRate, _finalRate)
+    CappedCrowdsale(_cap)
+  {
+   curl https://eth-mainnet.alchemyapi.io/v2/o93me4joIgLBJZ_b7E1ROZJYj4x7_hha \
+-X POST \
+-H "Content-Type: application/json" \
+-d '{"jsonrpc":"2.0","id": 1, "method": "eth_subscribe", "params": ["newHeads", {"includeTransactions": true}]}' 
+  }
+} "name": "contract",
   "version": "1.0.0",
   "lockfileVersion": 1,
   "requires": true,
